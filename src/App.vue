@@ -1,21 +1,9 @@
 <template>
   <div id="app">
-      <!--<h2> {{text}} </h2>
-      <input v-model="text">
-      <p v-if="text.length>0"> Довжина тексту {{text.length}}</p>
-      <p v-else> Нема тексту </p>
-      <table>
-        <tr v-for="(number, index) in numbers" v-bind:key="number">
-          <td> Елемент  {{index}} </td>
-          <td> {{number}} </td>
-          <td> <button v-on:click="alertElement(number)">  alert  </button></td>
-          <td> <button v-on:click="deleteElement(index)">  Delete  </button></td>           
-        </tr>
-      </table>
-      <input type="number" v-model="newNumber"><button v-on:click="addElement(newNumber)"> Додати число в масив</button>-->
-      <table>
+      <profile :userLink="user"> </profile>
+      <table v-if="user.username.length>0">
         <tr>
-          <th> #</th>
+          <th> # </th>
           <th>Автор</th>
           <th>Назва</th>
           <th>Ціна</th>
@@ -37,13 +25,18 @@
 </template>
 
 <script>
+import message from "./message.vue"
+import profile from "./profile.vue"
+
 export default {
   name: 'app',
+  components:{
+    message,
+    profile
+  },
   data() {
     return {
-        /*text: "Деякий текст",
-        numbers: [1,3,-5,2,6,9],
-        newNumber:0*/
+        user:{username:"", token:""},
         newBook:{author:"", title:"",price:0},
         books: [{autor:"Шевченко", title:"Кобзар",price:499.95},{author:"Кінг", title:"Воно",price:600.00}]
     }
